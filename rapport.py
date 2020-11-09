@@ -241,7 +241,7 @@ class FFNN:
         self.layers[-1].D = D_out.T
         # TODO: Compute the D matrix for all the layers (excluding the first one which corresponds to the input itself)
         # (you should only use self.layers[1:])
-        for i in range(1, self.nlayers):
+        for i in reversed(self.nlayers):
             prev_layer = self.layers[i+1].D
             cur_layer = self.layers[i]
             _ = self.one_step_backward(prev_layer, cur_layer)
@@ -255,7 +255,7 @@ class FFNN:
     
     def update_all_weights(self)-> None:
         # TODO: Update all W matrix using the update_weights function
-        for i in range(1, len(self.config)):
+        for layer in self.layers:
             _ = self.update_weights
         pass
         
@@ -329,6 +329,11 @@ if __name__ == "__main__":
 
   assert X_train.shape[0] % minibatch_size == 0
   assert X_test.shape[0] % minibatch_size == 0
+
+  X_train = normalize_data(X_train)
+  X_train = target_to_one_hot(y_train)
+  X_test = normalize_data(X_test)
+  y_test = target_to_one_hot(y_test)
 
   err = ffnn.train(nepoch, X_train, y_train, X_test, y_test)
 
