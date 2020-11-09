@@ -364,13 +364,7 @@ if __name__ == "__main__":
           # TODO
           pass
 
-# loop arround the demo test set and try to find a miss prediction
-for i in range(0, nsample):   
-    prediction = None # Todo
-    true_target = None # Todo
-    if prediction != true_target:
-        # TODO
-        pass
+
 
 """## Open analysis
 
