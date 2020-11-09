@@ -121,8 +121,8 @@ def target_to_one_hot(target: np.array) -> np.array:
     # one line : one_hot_matrix[np.arange(len(target)), int(target)] = 1
     #target.shape[0] au lieu de len(target)
     for i in range (0, target.shape[0]):
-      label = int(target[i])
-      one_hot_matrix[i, label] = 1
+        label = int(target[i])
+        one_hot_matrix[i, label] = 1
     return one_hot_matrix
 
 #target_to_one_hot(np.array(mnist_target).reshape(-1,1))
@@ -326,10 +326,12 @@ learning_rate = 0.01
 #Jouer avec les 2 "3", nb de neurones par couches
 ffnn = FFNN(config=[784, 3, 3, 10], minibatch_size=minibatch_size, learning_rate=learning_rate)
 
-assert X_train.shape[0] % minibatch_size == 0
-assert X_test.shape[0] % minibatch_size == 0
+if __name__ == "__main__":
 
-err = ffnn.train(nepoch, X_train, y_train, X_test, y_test)
+  assert X_train.shape[0] % minibatch_size == 0
+  assert X_test.shape[0] % minibatch_size == 0
+
+  err = ffnn.train(nepoch, X_train, y_train, X_test, y_test)
 
 """## Error analysis (2 pts)
 
@@ -338,19 +340,29 @@ Here we use a subset of the test data to try and find some miss classification.
 It will help us understand why the neural network failed sometimes to classify images.
 """
 
-nsample = 1000
-X_demo = X_test[:nsample,:]
-y_demo = ffnn.forward_pass(X_demo)
-y_true = y_test[:nsample,:]
+if __name__ == "__main__":
 
-index_to_plot = 50 
-plot_one_image(X_demo, y_true, index_to_plot)
+  nsample = 1000
+  X_demo = X_test[:nsample,:]
+  y_demo = ffnn.forward_pass(X_demo)
+  y_true = y_test[:nsample,:]
 
-# Compare to the prediction 
-prediction = np.argmax(y_demo[index_to_plot,:])
-true_target = np.argmax(y_true[index_to_plot,:])
+  index_to_plot = 50 
+  plot_one_image(X_demo, y_true, index_to_plot)
 
-# is it the same number ?
+  # Compare to the prediction 
+  prediction = np.argmax(y_demo[index_to_plot,:])
+  true_target = np.argmax(y_true[index_to_plot,:])
+
+  # is it the same number ? 
+
+  # loop arround the demo test set and try to find a miss prediction
+  for i in range(0, nsample):   
+      prediction = None # Todo
+      true_target = None # Todo
+      if prediction != true_target:
+          # TODO
+          pass
 
 # loop arround the demo test set and try to find a miss prediction
 for i in range(0, nsample):   
