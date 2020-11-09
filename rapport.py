@@ -101,7 +101,7 @@ def normalize_data(dataset: np.array) -> np.array:
     normalized_dataset = (dataset - np.min(dataset)) / (np.max(dataset) - np.min(dataset))
     #other method : dataset/255
     return normalized_dataset
-normalized_data_value = normalize_data(mnist_data)
+#normalized_data_value = normalize_data(mnist_data)
 
 """It's also important to find a good representation of the target.
 
@@ -152,9 +152,9 @@ def softmax(X: np.array)-> np.array:
     X_sum = np.sum(X_exp, axis=1).reshape(-1,1)
     M_softmax = X_exp / X_sum
     return M_softmax
-S = softmax(np.array([[1,2,4],[4,1,10]]))
-print(S)
-print(np.sum(S,axis=1))
+#S = softmax(np.array([[1,2,4],[4,1,10]]))
+#print(S)
+#print(np.sum(S,axis=1))
 
 """## Feed forward NN
 
