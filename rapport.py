@@ -141,7 +141,7 @@ def sigmoid(M: np.array) -> np.array:
 def d_sigmoid(M: np.array)-> np.array:
     """Compute the derivative of the sigmoid""" 
     # TODO
-    M_der = (sigmoid(M) / 1 - sigmoid(M))
+    M_der = sigmoid(M) * ( 1 / 1 - sigmoid(M))
     return M_der
 
 def softmax(X: np.array)-> np.array:
